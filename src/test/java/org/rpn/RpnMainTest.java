@@ -70,6 +70,11 @@ public class RpnMainTest
         assertEquals("Stack: 3", printer.print(result));
     }
 
+    /*
+    Example 1
+    5 2
+    stack: 5 2
+     */
     @Test
     public void TestExample1()
     {
