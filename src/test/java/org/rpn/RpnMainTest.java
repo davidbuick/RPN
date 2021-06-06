@@ -18,44 +18,56 @@ public class RpnMainTest
     public void plusOperator()
     {
         Calculator calculator = new Calculator();
-        List<Double> output = calculator.compute("3 2 +");
-        assertThat(output, contains(5.0));
+        Result result = calculator.compute("3 2 +");
+        assertThat(result.getList(), contains(5.0));
 
         Printer printer = new DefaultPrinter();
-        assertEquals("Stack: 5", printer.print(output));
+        assertEquals("Stack: 5", printer.print(result));
     }
 
     @Test
     public void MinusOperator()
     {
         Calculator calculator = new Calculator();
-        List<Double> output = calculator.compute( "3 2 -");
-        assertThat(output, contains(1.0));
+        Result result = calculator.compute( "3 2 -");
+        assertThat(result.getList(), contains(1.0));
 
         Printer printer = new DefaultPrinter();
-        assertEquals("Stack: 1", printer.print(output));
+        assertEquals("Stack: 1", printer.print(result));
     }
 
     @Test
     public void MultiplyOperator()
     {
         Calculator calculator = new Calculator();
-        List<Double> output = calculator.compute("3 2 *");
-        assertThat(output, contains(6.0));
+        Result result = calculator.compute("3 2 *");
+        assertThat(result.getList(), contains(6.0));
 
         Printer printer = new DefaultPrinter();
-        assertEquals("Stack: 6", printer.print(output));
+        assertEquals("Stack: 6", printer.print(result));
     }
 
     @Test
     public void DivideOperator()
     {
         Calculator calculator = new Calculator();
-        List<Double> output = calculator.compute( "3 2 /");
-        assertThat(output, contains(1.5));
+        Result result= calculator.compute( "3 2 /");
+        assertThat(result.getList(), contains(1.5));
 
         Printer printer = new DefaultPrinter();
-        assertEquals("Stack: 1.5", printer.print(output));
+        assertEquals("Stack: 1.5", printer.print(result));
+    }
+
+
+    @Test
+    public void SqrtOperator()
+    {
+        Calculator calculator = new Calculator();
+        Result result= calculator.compute( "9 sqrt");
+        assertThat(result.getList(), contains(3.0));
+
+        Printer printer = new DefaultPrinter();
+        assertEquals("Stack: 3", printer.print(result));
     }
 
     @Test
@@ -201,12 +213,7 @@ public class RpnMainTest
         Calculator calculator = new Calculator();
         Printer printer = new DefaultPrinter();
 
-        assertEquals("operator * (position: 15): insufficient parameters",
+        assertEquals("operator * (position: 15): insufficient parameters\nStack: 11",
                 printer.print(calculator.compute("1 2 3 * 5 + * * 6 5")));
     }
-
-
-
-
-
 }

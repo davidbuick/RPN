@@ -9,7 +9,7 @@ import org.rpn.operators.OperatorFactory;
 import java.util.*;
 
 public class Calculator {
-    public List<Double> compute(String input) {
+    public Result compute(String input) {
         // Position records the number position in the original input. It will be used in the warning of insufficient
         // parameters.
       int position = 0;
@@ -25,9 +25,9 @@ public class Calculator {
               // Validate the stack.
               int parameterNum = operator.parameterNum();
               if (stack.size() < parameterNum) {
-                  throw new IllegalArgumentException(
-                          "operator " + operator.sign() + " (position: " + position + "): insufficient parameters");
-                  return createOutput(stack);
+                  Result result = createOutput(stack);
+                  result.setError("operator " + operator.sign() + " (position: " + position + "): insufficient parameters");
+                  return result;
               }
               // Construct input for the parameter.
               List<Double> parameters = new ArrayList<Double>();
@@ -51,12 +51,12 @@ public class Calculator {
   }
 
   // Create the output as a list. Note the stack won't be cleared.
-  private List<Double> createOutput(Stack<Double> stack) {
+  private Result createOutput(Stack<Double> stack) {
       List<Double> output = new ArrayList<Double>();
       for (int i = 0; i < stack.size(); i++) {
           output.add(stack.get(i));
       }
-      return output;
+      return new Result(output);
   }
 
   private boolean isOperator(String input) {

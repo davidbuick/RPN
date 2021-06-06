@@ -5,7 +5,7 @@ import java.util.List;
 public class Result {
 
     private List<Double> list;
-    private String error;
+    private String error = "";
 
     public Result(List<Double> list, String error) {
         this.list = list;
@@ -30,5 +30,9 @@ public class Result {
 
     public void setError(String error) {
         this.error = error;
+    }
+
+    public boolean hasError() {
+        return !getError().isEmpty();
     }
 }

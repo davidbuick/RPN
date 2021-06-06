@@ -13,16 +13,14 @@ public class RpnMain {
 
         while(scanner.hasNext()) {
             String inputLine = scanner.nextLine();
-                if (inputLine.equals("exit")) {
+                if ("exit".equals(inputLine)) {
                     break;
             }
-            // Parse the input and compute the result as a list of Double values.
-            List<Double> output = calculator.compute(inputLine);
+            // Parse the input and compute the result.
+            Result result = calculator.compute(inputLine);
             // Print the Double values in specified format.
-            String outputPrint = printer.print(output);
+            String outputPrint = printer.print(result);
             System.out.println(outputPrint);
         }
-
-
     }
 }

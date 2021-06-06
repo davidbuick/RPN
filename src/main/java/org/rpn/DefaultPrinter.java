@@ -6,13 +6,18 @@ import java.util.List;
 
 public class DefaultPrinter implements Printer{
     @Override
-    public String print(List<Double> input) {
+    public String print(Result result) {
         // Print as at most 10 decimal.
         DecimalFormat decimalFormat = new DecimalFormat("###.##########");
         List<String> outputList = new ArrayList<String>();
-        for (Double num: input) {
+        for (Double num: result.getList()) {
             outputList.add(String.valueOf(decimalFormat.format(num)));
         }
-        return  "Stack: " + String.join(" ", outputList);
+        String output =  "Stack: " + String.join(" ", outputList);
+        // Print error is there is any.
+        if (result.hasError()) {
+            output = result.getError() + "\n" + output;
+        }
+        return output;
     }
 }

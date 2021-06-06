@@ -2,6 +2,7 @@ package org.rpn.commands;
 
 import org.apache.commons.lang3.StringUtils;
 import org.rpn.Calculator;
+import org.rpn.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,11 @@ public class Undo implements SpecialOperator{
 
             // Create an Calculator instance to compute the result after undoing the last operator.
             Calculator calculator = new Calculator();
-            List<Double> newResult = calculator.compute(newInput);
+            Result result = calculator.compute(newInput);
 
             // Use the new stack to replace the current stack.
             stack.clear();
-            for (Double d: newResult) {
+            for (Double d: result.getList()) {
                 stack.push(d);
             }
         }
