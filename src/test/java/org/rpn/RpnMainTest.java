@@ -1,12 +1,8 @@
-package org.example;
+package org.rpn;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.rpn.Calculator;
-import org.rpn.DefaultPrinter;
-import org.rpn.Printer;
-import org.rpn.Result;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
